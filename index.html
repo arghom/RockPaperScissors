@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function computerPlay(){
+            let retVal;
+            let computerMove = Math.ceil(Math.random() * 3);
+            if(computerMove === 1){
+                retVal = "Rock"; 
+            } else if (computerMove === 2){
+                retVal = "Scissors";
+            } else{
+                retVal = "Paper";
+            }
+            return retVal.toLowerCase();
+        }
+        let compScore = 0;
+        let playerScore = 0;
+        function playGame(playerSelection, computerSelection){
+            if(playerSelection === computerSelection){
+                return "The Game is a tie!";
+            } else if(playerSelection === "rock" && computerSelection === "scissors"){
+                playerScore++;
+                return "Player Wins!";
+            } else if(playerSelection === "paper" && computerSelection === "rock"){
+                playerScore++;
+                return "player Wins!";
+            } else if(playerSelection === "scissors" && computerSelection === "paper"){
+                playerScore++;
+                return "player Wins!";
+            }  
+            else{
+                compScore++;
+                return "Computer wins!";
+            }
+        }
+        function game(){
+            let playerSelection;
+            let computerSelection;
+            for(let i = 0; i < 5; i++){
+                playerSelection = prompt("Enter your selection").toLowerCase();
+                computerSelection = computerPlay();
+                console.log(playGame(playerSelection, computerSelection));
+                if(compScore === 3){
+                    console.log("Computer has won the match");
+                    return;
+                } else if(playerScore === 3){
+                    console.log("Player has won the match");
+                    return;
+                }
+            }
+        }
+        game();
+    </script>
+</body>
+</html>
